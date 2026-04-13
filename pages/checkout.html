@@ -10,13 +10,56 @@
 </head>
 <body>
 
+     <header class="nav-container">
+        <nav class="navbar">
+            <div class="logo">
+                <h2>My Website</h2>
+            </div>
+            <div class="search-box desktop-search">
+                <i class="material-symbols-outlined">search</i>
+                <input type="text" placeholder="Buscar...">
+            </div>
+            <div class="nav-links desktop-nav">
+                <a href="#">Inicio</a>
+                <a href="#" class="abrir-modal" >
+                    <i class="material-symbols-outlined">person</i>
+                    <span>Ingresa</span>
+                </a>
+                <a href="#">
+                    <i class="material-symbols-outlined">shopping_cart</i>
+                </a>
+            </div>
+            <button class="menu-hamburguesa" id="menu-hamburguesa" aria-label="Abrir menu">
+                <i class="material-symbols-outlined">menu</i>
+            </button>
+        </nav>
+
+        <div class="mobile-menu" id="mobile-menu">
+            <div class="search-box mobile-search">
+                <i class="material-symbols-outlined">search</i>
+                <input type="text" placeholder="Buscar...">
+            </div>
+            <div class="mobile-links">
+                <a href="">Inicio</a>
+                <a href="" class="abrir-modal">
+                    <i class="material-symbols-outlined">person</i>
+                    <span>Ingresa</span>
+                </a>
+                <a href="">
+                    <i class="material-symbols-outlined">shopping_cart</i>
+                    <span>Carrito</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
     <section class="mainCheckout">
 
 
     <!-- menu de productos y formulario de envío -->
 
         <div class="menuProductos">
-            <div>
+            <div class="header">
                 <h1>Finalizar compra</h1>
                 <p>Revisá tus productos y completá el envío</p>
             </div>
@@ -26,7 +69,7 @@
 
                 <div class="cardComprasTitulo">
                     <img class="cardImg" src="https://placehold.co/600x400" alt="">
-                    <h2 class="cardTitulo">Anteojos</h2>
+                    <h4 class="cardTitulo">Anteojos</h4>
                 </div>
 
                 <div class="cardFooter">
@@ -69,7 +112,7 @@
                         <input type="text" class="form-control" id="inputCity">
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <label for="inputState" class="form-label">Privincia</label>
                         <select id="inputState" class="form-select">
                         <option selected>Seleccione...</option>
@@ -158,9 +201,9 @@
                     <span>$ 230.135</span>
                 </div>
 
-                <div class="buttonsCheckout">
+                <div class="buttonsCheckout ">
                     <button type="button" class="btn btn-primary">Finalizar pedido</button>
-                    <button type="button" class="btn btn-light">Seguir comprando</button>
+                    <button type="button" class="btn btn-secondary">Seguir comprando</button>
                 </div>
 
             </div>
@@ -168,6 +211,48 @@
 
 
     </section>
+
+    <footer class="footer">
+        <div class="footer-container">
+
+            <div class="footer-col">
+                <h3>My Website</h3>
+                <p>Tu tienda de tecnología de confianza. Los mejores productos al mejor precio.</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Enlaces Rápidos</h4>
+                <ul>
+                    <li><a href="">Sobre Nosotros</a></li>
+                    <li><a href="">Contacto</a></li>
+                    <li><a href="">Blog</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Soporte</h4>
+                <ul>
+                    <li><a href="">Preguntas Frecuentes</a></li>
+                    <li><a href="">Envíos</a></li>
+                    <li><a href="">Devoluciones</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="">Términos y Condiciones</a></li>
+                    <li><a href="">Política de Privacidad</a></li>
+                    <li><a href="">Cookies</a></li>
+                </ul>
+            </div>
+
+        </div>
+        <div class="footer-bottom">
+            <p>2026 My Website. Todos los derechos reservados.</p>
+        </div>
+
+    </footer>
     
 </body>
 </html>
