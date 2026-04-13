@@ -1,0 +1,122 @@
+/* Reset básico moderno */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+body {
+    min-height: 100vh;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+}
+
+img,
+svg {
+    display: block;
+    max-width: 100%;
+}
+
+.mainCheckout {
+    gap: 20px;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    background-color: rgb(231, 231, 231);
+}
+
+
+
+.cardCompras {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 20px;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.cardComprasTitulo {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    align-items: center;
+}
+
+.cardFooter {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.precio {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cardImg {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+
+/* botones de mas y menos y cantidad */
+
+.cantidad {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    background-color: #F6F8FA;
+    padding: .5rem;
+    gap: 8px;
+    border-radius: 5rem;
+  
+}
+
+.cantidad-btn {
+    width: 30px;
+    height: 30px;
+    background-color: #ffffff;
+    border: 1px solid #E1E3E8;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius:100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.formEnvio {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    margin-top: 1rem;
+}
+
+.menuTotal {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    margin-top: 1rem;
+}
+
+.buttonsCheckout {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
