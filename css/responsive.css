@@ -1,0 +1,32 @@
+/*Tablet / Mobile*/
+@media (max-width: 768px) {
+    .desktop-search, .desktop-nav {
+        display: none;
+    }
+    .search-box {
+        width: 100%;
+        max-width: none;
+    }
+    
+    .menu-hamburguesa {
+        display: block;
+    }
+    
+    .navbar{
+        padding: 16px 20px;
+    }
+    .logo h2 {
+        font-size: 24px;
+    }
+    .features-section {
+        display: flex;
+        flex-direction: column;
+    }
+    .footer-container {
+    grid-template-columns: 1fr; 
+    }
+    .modal-content {
+        width: 90%;
+    }
+
+}

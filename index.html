@@ -1,11 +1,202 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lab web Cliente</title>
+    <title>Lab Web Cliente</title>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+    <script src="/js/script.js" defer></script>
 </head>
+
 <body>
-    
+    <header class="nav-container">
+        <nav class="navbar">
+            <div class="logo">
+                <h2>My Website</h2>
+            </div>
+            <div class="search-box desktop-search">
+                <i class="material-symbols-outlined">search</i>
+                <input type="text" placeholder="Buscar...">
+            </div>
+            <div class="nav-links desktop-nav">
+                <a href="#">Inicio</a>
+                <a href="#" class="abrir-modal" >
+                    <i class="material-symbols-outlined">person</i>
+                    <span>Ingresa</span>
+                </a>
+                <a href="#">
+                    <i class="material-symbols-outlined">shopping_cart</i>
+                </a>
+            </div>
+            <button class="menu-hamburguesa" id="menu-hamburguesa" aria-label="Abrir menu">
+                <i class="material-symbols-outlined">menu</i>
+            </button>
+        </nav>
+
+        <div class="mobile-menu" id="mobile-menu">
+            <div class="search-box mobile-search">
+                <i class="material-symbols-outlined">search</i>
+                <input type="text" placeholder="Buscar...">
+            </div>
+            <div class="mobile-links">
+                <a href="">Inicio</a>
+                <a href="" class="abrir-modal">
+                    <i class="material-symbols-outlined">person</i>
+                    <span>Ingresa</span>
+                </a>
+                <a href="">
+                    <i class="material-symbols-outlined">shopping_cart</i>
+                    <span>Carrito</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div class="log-in-modal" id="form-modal">
+        <div class="modal-content">
+            <span class="close-button material-symbols-outlined" id="close-button">close</span>
+            <h2>Iniciar Sesión</h2>
+            <form>
+                <p><b>Correo Electronico</b></p>
+                <input type="email" placeholder="tu@email.com" required>
+                <p><b>Contraseña</b></p>
+                <input type="password" placeholder="Contraseña" required>
+                <p class="forgot-password"><a href="#">¿Olvidaste tu contraseña?</a></p>
+                <button type="submit">Ingresar</button>
+            </form>
+            <p class="register-button">¿No tienes una cuenta? <a href="#">Registrate</a></p>
+            <p> O continúa con </p>
+            <div class="social-login">
+                <button class="google-login">
+                    <b>Google</b> 
+                </button>
+                <button class="facebook-login">
+                    <b>Facebook</b>                   
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <section class="home-section">
+        <h1>Bienvenido a mi sitio web</h1>
+        <p>Explora nuestro contenido y disfruta de una experiencia única.</p>
+        <button class="explorer-products">
+            <i class="material-symbols-outlined">local_mall</i>
+            Explorar Productos
+            <i class="material-symbols-outlined">arrow_forward</i>
+        </button>
+    </section>
+    <section class="features-section">
+        <div class="feature">
+            <i class="material-symbols-outlined">local_shipping</i>
+            <h3>Envío Rápido</h3>
+            <p>Recibe tus productos en tiempo récord con nuestro servicio de envío rápido.</p>
+        </div>
+        <div class="feature">
+            <i class="material-symbols-outlined">verified</i>
+            <h3>Calidad Garantizada</h3>
+            <p>Ofrecemos productos de alta calidad con garantía de satisfacción.</p>
+        </div>
+        <div class="feature">
+            <i class="material-symbols-outlined">support_agent</i>
+            <h3>Soporte 24/7</h3>
+            <p>Nuestro equipo de soporte está disponible las 24 horas para ayudarte con cualquier consulta.</p>
+        </div>
+
+    </section>
+    <h2 class="section-title">Productos Destacados</h2>
+    <section class="container-products">
+        <div class="products-section">
+            <div class="product-card">
+                <img src="https://via.placeholder.com/300x200" alt="Producto 1">
+                <h3>Producto 1</h3>
+                <p>Descripción breve del producto 1.</p>
+                <button class="buy-now">Comprar Ahora</button>
+            </div>
+            <div class="product-card">
+                <img src="https://via.placeholder.com/300x200" alt="Producto 1">
+                <h3>Producto 1</h3>
+                <p>Descripción breve del producto 1.</p>
+                <button class="buy-now">Comprar Ahora</button>
+            </div>
+            <div class="product-card">
+                <img src="https://via.placeholder.com/300x200" alt="Producto 1">
+                <h3>Producto 1</h3>
+                <p>Descripción breve del producto 1.</p>
+                <button class="buy-now">Comprar Ahora</button>
+            </div>
+            <div class="product-card">
+                <img src="https://via.placeholder.com/300x200" alt="Producto 2">
+                <h3>Producto 2</h3>
+                <p>Descripción breve del producto 2.</p>
+                <button class="buy-now">Comprar Ahora</button>
+            </div>
+            <div class="product-card">
+                <img src="https://via.placeholder.com/300x200" alt="Producto 3">
+                <h3>Producto 3</h3>
+                <p>Descripción breve del producto 3.</p>
+                <button class="buy-now">Comprar Ahora</button>
+            </div>
+        </div>
+
+        <div>
+            <button class="all-button" href="/products">
+                Ver Todos los Productos
+                <i class="material-symbols-outlined">arrow_forward</i>
+            </button>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-container">
+
+            <div class="footer-col">
+                <h3>My Website</h3>
+                <p>Tu tienda de tecnología de confianza. Los mejores productos al mejor precio.</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Enlaces Rápidos</h4>
+                <ul>
+                    <li><a href="">Sobre Nosotros</a></li>
+                    <li><a href="">Contacto</a></li>
+                    <li><a href="">Blog</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Soporte</h4>
+                <ul>
+                    <li><a href="">Preguntas Frecuentes</a></li>
+                    <li><a href="">Envíos</a></li>
+                    <li><a href="">Devoluciones</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="">Términos y Condiciones</a></li>
+                    <li><a href="">Política de Privacidad</a></li>
+                    <li><a href="">Cookies</a></li>
+                </ul>
+            </div>
+
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 My Website. Todos los derechos reservados.</p>
+        </div>
+
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous">
+    </script>
 </body>
+
 </html>
