@@ -29,4 +29,19 @@
         width: 90%;
     }
 
+    .detalle-modal-body {
+        flex-direction: column;
+    }
+    
+    .detalle-image-container {
+        padding: 10px;
+    }
+
+    .detalle-img {
+        max-height: 250px;
+    }
+
+    .detalle-title {
+        font-size: 22px;
+    }
 }
