@@ -8,9 +8,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="stylesheet" href="/css/styles.css">
-    <link rel="stylesheet" href="/css/responsive.css">
-    <script src="/js/script.js" defer></script>
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/responsive.css">
+    <script src="./js/script.js" defer></script>
+    <script src="./js/detalle.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -117,19 +119,19 @@
                 <img src="https://via.placeholder.com/300x200" alt="Producto 1">
                 <h3>Producto 1</h3>
                 <p>Descripción breve del producto 1.</p>
-                <button class="buy-now">Comprar Ahora</button>
+                <button class="buy-now" onclick="mostrarModalDetalle(1)">Detalles del Producto</button>
             </div>
             <div class="product-card">
                 <img src="https://via.placeholder.com/300x200" alt="Producto 1">
                 <h3>Producto 1</h3>
                 <p>Descripción breve del producto 1.</p>
-                <button class="buy-now">Comprar Ahora</button>
+                <button class="buy-now" onclick="mostrarModalDetalle(2)">Detalles del Producto</button>
             </div>
             <div class="product-card">
                 <img src="https://via.placeholder.com/300x200" alt="Producto 1">
                 <h3>Producto 1</h3>
                 <p>Descripción breve del producto 1.</p>
-                <button class="buy-now">Comprar Ahora</button>
+                <button class="buy-now" onclick="mostrarModalDetalle(3)">Detalles del Producto</button>
             </div>
             <div class="product-card">
                 <img src="https://via.placeholder.com/300x200" alt="Producto 2">
