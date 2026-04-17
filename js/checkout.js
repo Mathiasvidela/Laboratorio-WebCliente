@@ -4,6 +4,10 @@ const subtotalValor = document.getElementById('subtotal');
 const ivaValor = document.getElementById('iva');
 const totalValor = document.getElementById('total');
 const contenedorProductos = document.getElementById('contenedorProductos');
+const btnComprar = document.getElementById('btn-comprar');
+const btnVolver = document.getElementById('btn-volver');
+const contenedorProudctos = document.getElementById('contenedorProductos');
+const summaryItems = document.getElementById('summaryItems');
 
 //local storage temporal para probar funciones de calculo de totales y mostrar productos dinamicos
 localStorage.setItem('carrito', JSON.stringify([
@@ -43,8 +47,11 @@ function mostrarCarrito() {
     const carrito = getCarrito();
     //vacias el contenedor antes de cargar los productos
     contenedorProductos.innerHTML = '';
+    summaryItems.innerHTML = '';
 
     carrito.forEach(producto => {
+
+        //imprime cada producto como card en el contenedor de productos
         const productoHTML = `<article class="cardCompras cardProducto" data-id="${producto.id}">
 
                 <div class="cardComprasTitulo">
@@ -67,14 +74,43 @@ function mostrarCarrito() {
                 </div>
 
             </article>`;
+
             contenedorProductos.innerHTML += productoHTML;
+
+            //agregar el producto al resumen de compra
+                const summaryItemHTML = `
+                <div class="item">
+                    <span><strong>${producto.cantidad}x</strong> ${producto.title}</span>
+                    <span>$ ${ (producto.price * producto.cantidad)}</span>
+                </div>`;
+
+                summaryItems.innerHTML += summaryItemHTML;
         });
+
+
+
     }
+
     
 
 
-//funcion para manejar el evento de suma y resta de articulos
+//funcion para manejar el evento de suma y resta de articulos y boton eliminar
 contenedorProductos.addEventListener('click', (e) => {
+
+    //click eliminar producto
+    if (e.target.closest('.btn-eliminar')) {
+
+        const card = e.target.closest('.cardProducto');
+        const id = card.dataset.id;
+
+        let carrito = getCarrito();
+
+        carrito = carrito.filter(producto => producto.id != id);
+
+        localStorage.setItem('carrito', JSON.stringify(carrito));
+        mostrarCarrito();
+        calcularTotales();
+    }
 
     // click boton mas
     if (e.target.closest('.btn-suma')) {
@@ -115,6 +151,37 @@ contenedorProductos.addEventListener('click', (e) => {
         calcularTotales();
     }
 
+});
+
+function validarCamposEnvio() {
+    const nombre = document.getElementById('inputNombre4').value.trim();
+    const apellido = document.getElementById('inputApellido4').value.trim();
+    const direccion = document.getElementById('inputDirreccion').value.trim();
+    const ciudad = document.getElementById('inputCity').value.trim();
+    const provincia = document.getElementById('inputState').value;
+
+    if (!nombre || !apellido || !direccion || !ciudad || !provincia) {
+        return false;
+    }
+    return true;
+}
+
+btnComprar.addEventListener('click', () => {
+    //comprobar si los campos de envio estan completos
+    if (!validarCamposEnvio()) {
+        alert('Completa todos los campos de envío antes de finalizar la compra');
+        return;
+    }
+    alert('¡Gracias por tu compra!');
+
+    localStorage.removeItem('carrito');
+    mostrarCarrito();
+    calcularTotales();
+
+});
+
+btnVolver.addEventListener('click', () => {
+    window.location.href = '../index.html';
 });
 
 //iniciar la pagina con los productos del carrito y los totales calculados
