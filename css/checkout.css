@@ -12,6 +12,7 @@ body {
     min-height: 100vh;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
+    background-color: #F4F5F7;
 }
 
 img,
@@ -28,6 +29,11 @@ svg {
     background-color: rgb(231, 231, 231);
 }
 
+.menuProductos {
+    background-color: #fff;
+    border-radius: .5rem;
+}
+
 
 
 .cardCompras {
@@ -35,9 +41,16 @@ svg {
     flex-direction: row;
     justify-content: space-between;
     gap: 20px;
-    background-color: #fff;
-    padding: 15px;
-    border-radius: 5px;
+    padding: 1rem;
+    margin: 1rem 2rem;
+    border-bottom: 1px solid #E1E3E8;
+}
+
+.cardImg {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: .2rem;
 }
 
 .cardComprasTitulo {
@@ -79,6 +92,7 @@ svg {
     padding: .5rem;
     gap: 8px;
     border-radius: 5rem;
+    border: #adadad solid 1px;
   
 }
 
@@ -95,22 +109,39 @@ svg {
     justify-content: center;
 }
 
+.cantidad-btn:hover {
+    background-color: #E1E3E8;
+    transform:1.2 ;
+}
+
+.btn-eliminar {
+    color: #E74C3C;
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: .5rem;
+}
+
 .formEnvio {
+    border-top: #adadad solid 1px;
     display: flex;
     flex-direction: column;
     gap: 15px;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 5px;
-    margin-top: 1rem;
+    background-color: #F9FAFC;
+    padding: 2rem;
+    border-radius: 0 0 .5rem .5rem;
 }
+
+/* estilos para el menu de total */
 
 .menuTotal {
     display: flex;
     flex-direction: column;
     gap: 15px;
     background-color: #fff;
-    padding: 20px;
+    padding: 2rem;
     border-radius: .5rem;
 }
 
@@ -121,13 +152,24 @@ svg {
     margin-top: 1rem;
 }
 
+.menuTotal-row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+/* estilos para el header */
+
 .header{
     display: flex;
     flex-direction: column;
-    gap: 5px;
-    background-color: #fff;
-    gap: 1rem;
-    border-radius: .5rem;
-    margin-bottom: 1rem;
-    padding: 1rem;
+    padding: 2rem;
+    border-bottom: #adadad solid 1px;
+}
+
+.header p {
+    color: #797979;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0;
 }
