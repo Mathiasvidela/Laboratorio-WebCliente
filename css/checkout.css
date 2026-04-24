@@ -1,4 +1,3 @@
-/* Reset básico moderno */
 *,
 *::before,
 *::after {
@@ -80,6 +79,11 @@ svg {
     width: 100px;
     height: 100px;
     object-fit: cover;
+}
+
+.itemsCard{
+    display: flex;
+    flex-direction: column;
 }
 
 /* botones de mas y menos y cantidad */
@@ -172,4 +176,29 @@ svg {
     font-size: 1rem;
     font-weight: 600;
     margin-bottom: 0;
+}
+
+@media (max-width: 850px) {
+
+    .mainCheckout{
+        display: flex;
+        flex-direction: column;
+    }
+
+}
+
+@media (max-width: 450px) {
+    
+    .cardCompras{
+        display: flex;
+        flex-direction: column;
+        margin: 1rem;
+        padding: 0 0 1rem 0;
+    }
+
+    .itemsCard{
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+    }
 }
