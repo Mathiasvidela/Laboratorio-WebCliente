@@ -60,7 +60,7 @@ function mostrarCarrito() {
                 </div>
 
                 <div class="cardFooter">
-                    <div>
+                    <div class="itemsCard">
                         <span class="btn-eliminar"><i class="fa-solid fa-trash"></i>Eliminar</span>
                         <div class="cantidad">
                             <button class="cantidad-btn btn-resta">−</button>
@@ -153,6 +153,14 @@ contenedorProductos.addEventListener('click', (e) => {
 
 });
 
+function limpiarForm(){
+    const nombre = document.getElementById('inputNombre4').value = "";
+    const apellido = document.getElementById('inputApellido4').value = "";
+    const direccion = document.getElementById('inputDirreccion').value  = "";
+    const ciudad = document.getElementById('inputCity').value  = "";
+    const provincia = document.getElementById('inputState').value = "";
+}
+
 function validarCamposEnvio() {
     const nombre = document.getElementById('inputNombre4').value.trim();
     const apellido = document.getElementById('inputApellido4').value.trim();
@@ -169,11 +177,28 @@ function validarCamposEnvio() {
 btnComprar.addEventListener('click', () => {
     //comprobar si los campos de envio estan completos
     if (!validarCamposEnvio()) {
-        alert('Completa todos los campos de envío antes de finalizar la compra');
-        return;
-    }
-    alert('¡Gracias por tu compra!');
 
+         Swal.fire({
+        theme: 'bootstrap-5',
+        title: 'Error!',
+        text: 'Debes completar los campos de envio antes de comprar',
+        icon: 'error',
+        confirmButtonText: 'Aceptar',
+        confirmButtonColor: '#dc2626'
+        })
+        return;
+
+    }
+
+    Swal.fire({
+    title: 'Compra realizada con exito!',
+    text: 'Muchas gracias por tu compra!',
+    icon: 'success',
+    confirmButtonText: 'Aceptar',
+    confirmButtonColor: '#96DF7B'
+    })
+
+    limpiarForm();
     localStorage.removeItem('carrito');
     mostrarCarrito();
     calcularTotales();
