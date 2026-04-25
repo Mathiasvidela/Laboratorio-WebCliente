@@ -1,3 +1,7 @@
+//imporacion de funciones JS carrito
+import { obtenerCarrito } from './carrito.js';
+import { eliminarItem } from './carrito.js';
+
 const cardProducto = document.querySelectorAll('.cardProducto');
 const cantidadValor = document.querySelectorAll('.cantidadValor');
 const subtotalValor = document.getElementById('subtotal');
@@ -6,22 +10,13 @@ const totalValor = document.getElementById('total');
 const contenedorProductos = document.getElementById('contenedorProductos');
 const btnComprar = document.getElementById('btn-comprar');
 const btnVolver = document.getElementById('btn-volver');
-const contenedorProudctos = document.getElementById('contenedorProductos');
 const summaryItems = document.getElementById('summaryItems');
-
-//local storage temporal para probar funciones de calculo de totales y mostrar productos dinamicos
-localStorage.setItem('carrito', JSON.stringify([
-    { id: 1, title: 'Producto 1', price: 100, cantidad: 10 , image: 'https://placehold.co/600x400'},
-    { id: 2, title: 'Producto 2', price: 50, cantidad: 5 , image: 'https://placehold.co/600x400'},
-    { id: 3, title: 'Producto 3', price: 150, cantidad: 1 , image: 'https://placehold.co/600x400'}
-]));
-
 
 
 //funciones para calcular los totales
 function calcularTotales() {
     let subtotal = 0;
-    getCarrito().forEach(producto => {
+    obtenerCarrito().forEach(producto => {
         //sumamos el precio por la cantidad de cada producto al subtotal
         subtotal += producto.price * producto.cantidad;
     });
@@ -38,13 +33,9 @@ function calcularTotales() {
 
 
 //mostrar los productos del local storage en el checkout
-function getCarrito() {
-    const carrito = localStorage.getItem('carrito');
-    return carrito ? JSON.parse(carrito) : [];
-}
 
 function mostrarCarrito() {
-    const carrito = getCarrito();
+    const carrito = obtenerCarrito();
     //vacias el contenedor antes de cargar los productos
     contenedorProductos.innerHTML = '';
     summaryItems.innerHTML = '';
@@ -86,13 +77,9 @@ function mostrarCarrito() {
 
                 summaryItems.innerHTML += summaryItemHTML;
         });
-
-
-
     }
 
     
-
 
 //funcion para manejar el evento de suma y resta de articulos y boton eliminar
 contenedorProductos.addEventListener('click', (e) => {
@@ -103,11 +90,9 @@ contenedorProductos.addEventListener('click', (e) => {
         const card = e.target.closest('.cardProducto');
         const id = card.dataset.id;
 
-        let carrito = getCarrito();
+        let carrito = obtenerCarrito();
 
-        carrito = carrito.filter(producto => producto.id != id);
-
-        localStorage.setItem('carrito', JSON.stringify(carrito));
+        eliminarItem(id);
         mostrarCarrito();
         calcularTotales();
     }
@@ -118,7 +103,7 @@ contenedorProductos.addEventListener('click', (e) => {
         const card = e.target.closest('.cardProducto');
         const id = card.dataset.id;
 
-        const carrito = getCarrito();
+        const carrito = obtenerCarrito();
 
         carrito.forEach(producto => {
             if (producto.id == id) {
@@ -138,7 +123,7 @@ contenedorProductos.addEventListener('click', (e) => {
         const card = e.target.closest('.cardProducto');
         const id = card.dataset.id;
 
-        const carrito = getCarrito();
+        const carrito = obtenerCarrito();
 
         carrito.forEach(producto => {
             if (producto.id == id && producto.cantidad > 1) {
