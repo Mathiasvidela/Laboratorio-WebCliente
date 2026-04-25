@@ -65,10 +65,23 @@ function renderizarProductos(productos) {
     container.innerHTML = productos.map(producto => `
         <article class="product-card">
             <img src="${producto.imagen}" alt="${producto.titulo}" class="product-image">
-            <h3>${producto.titulo}</h3>
-            <p>${producto.categoria}</p>
-            <p>${producto.descripcion}</p>
-            <p>$${producto.precio}</p>
+
+            <div class="product-info">
+                <p class="product-category">${producto.categoria}</p>
+
+                <h3 class="product-title">${producto.titulo}</h3>
+
+                <p class="product-description">${producto.descripcion}</p>
+
+                <div class="product-bottom">
+                    <p class="product-price">$${producto.precio}</p>
+
+                    <button class="add-to-cart-btn" data-id="${producto.id}">
+                        <span class="material-symbols-outlined">shopping_cart</span>
+                        Agregar
+                    </button>
+                </div>
+            </div>
         </article>
     `).join('');
 }
