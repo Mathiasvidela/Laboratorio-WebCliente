@@ -189,6 +189,10 @@ svg {
 
 @media (max-width: 450px) {
     
+    .header{
+        padding: 1rem;
+    }
+
     .cardCompras{
         display: flex;
         flex-direction: column;
@@ -200,5 +204,11 @@ svg {
         display: flex;
         flex-direction: row;
         gap: 1rem;
+    }
+    .formEnvio{
+        padding: 1rem;
+    }
+    .menuTotal{
+        padding: 1rem;
     }
 }
