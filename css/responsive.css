@@ -47,3 +47,17 @@
         margin: 0 auto;
     }
 }
+
+@media (max-width: 850px) {
+    .product-detail-content {
+        flex-direction: column;
+    }
+    .product-modal-container {
+        padding: 30px 20px;
+        overflow-y: auto;
+        max-height: 90vh;
+    }
+    #modal-title {
+        font-size: 28px;
+    }
+}

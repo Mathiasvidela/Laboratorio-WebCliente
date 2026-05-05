@@ -52,6 +52,34 @@ async function obtenerTodosLosProductos() {
     return data.records.filter(record => Object.keys(record.fields).length > 0);
 }
 
+// Variable para guardar los productos obtenidos de Airtable
+let productosCargados = [];
+
+// Cargar productos al iniciar la página
+
+document.addEventListener('DOMContentLoaded', async function() {
+    try {
+        const registros = await obtenerTodosLosProductos();
+        productosCargados = registros.map(record => {
+            const fields = record.fields;
+
+            return {
+                id: record.id,
+                titulo: fields.Titulo || "Producto sin nombre",
+                descripcion: fields.Caracteristicas || "Sin descripción",
+                imagen: fields.imagen || "images/Products/default-product.jpg",
+                precio: fields.precio || "0",
+                categoria: fields.categoria || "Sin categoría"
+            };
+        });
+        renderizarProductos(productosCargados);
+
+    } catch (error) {
+        console.error('Error al cargar productos:', error);
+    }
+});
+
+
 // Función para renderizar productos en el HTML
 
 function renderizarProductos(productos) {
@@ -63,7 +91,7 @@ function renderizarProductos(productos) {
     }
 
     container.innerHTML = productos.map(producto => `
-        <article class="product-card">
+        <article class="product-card" onclick="verDetalleProducto('${producto.id}')">
             <img src="${producto.imagen}" alt="${producto.titulo}" class="product-image">
 
             <div class="product-info">
@@ -76,7 +104,7 @@ function renderizarProductos(productos) {
                 <div class="product-bottom">
                     <p class="product-price">$${producto.precio}</p>
 
-                    <button class="add-to-cart-btn" data-id="${producto.id}">
+                    <button class="add-to-cart-btn" data-id="${producto.id}" onclick="event.stopPropagation()">
                         <span class="material-symbols-outlined">shopping_cart</span>
                         Agregar
                     </button>
@@ -86,29 +114,32 @@ function renderizarProductos(productos) {
     `).join('');
 }
 
-// Cargar productos al iniciar la página
+// Función para mostrar el detalle del producto en un modal
 
-document.addEventListener('DOMContentLoaded', async function() {
-    try {
-        const registros = await obtenerTodosLosProductos();
+function verDetalleProducto(productoId) {
+    const producto = productosCargados.find(p => p.id === productoId);
+    if (!producto) {
+        console.error('Producto no encontrado:', productoId);
+        return;
+    }
+    document.getElementById('modal-img').src = producto.imagen;
+    document.getElementById('modal-title').innerText = producto.titulo;
+    document.getElementById('modal-category').innerText = producto.categoria;
+    document.getElementById('modal-description').innerText = producto.descripcion;
+    document.getElementById('modal-price').innerText = `$${producto.precio}`;
 
-    const misProductos = registros.map(record => {
-    const fields = record.fields;
+    document.getElementById('product-detail-modal').style.display = 'flex';
+}
 
-    return {
-        id: record.id,
-        titulo: fields.Titulo || "Producto sin nombre",
-        descripcion: fields.Caracteristicas || "Sin descripción",
-        imagen: fields.imagen || "images/Products/default-product.jpg",
-        precio: fields.precio || "0",
-        categoria: fields.categoria || "Sin categoría"
-    };
-    });
+// Cerrar el modal de detalle del producto
+document.getElementById('close-detail-modal').addEventListener('click', () => {
+    document.getElementById('product-detail-modal').style.display = 'none';
+});
 
-        console.log(misProductos);
-        renderizarProductos(misProductos);
-
-    } catch (error) {
-        console.error('Error al cargar productos:', error);
+// Cerrar el modal de detalle al hacer clic fuera del contenido
+window.addEventListener('click', (event) => {
+    const detailModal = document.getElementById('product-detail-modal');
+    if (event.target === detailModal) {
+        detailModal.style.display = 'none';
     }
 });
