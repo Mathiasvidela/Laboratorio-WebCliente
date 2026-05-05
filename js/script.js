@@ -86,6 +86,54 @@ function renderizarProductos(productos) {
     `).join('');
 }
 
+// Función para activar los botones de "Agregar al carrito"
+
+function activarBotonesAgregar(productos) {
+    const botonesAgregar = document.querySelectorAll('.add-to-cart-btn');
+
+    botonesAgregar.forEach(function(boton) {
+        boton.addEventListener('click', function() {
+            const productoId = boton.dataset.id;
+            const productoSeleccionado = productos.find(function(producto) {
+                return producto.id === productoId;
+            });
+
+            Swal.fire({
+                title: '¿Agregar al carrito?',
+                text: `¿Quieres agregar "${productoSeleccionado.titulo}" al carrito?`,
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Sí, agregar',
+                cancelButtonText: 'Cancelar',
+                confirmButtonColor: '#2563eb',
+                cancelButtonColor: '#6b7280'
+            }).then(function(result) {
+                if (result.isConfirmed) {
+                    agregarAlCarrito(productoSeleccionado);
+
+                    Swal.fire({
+                        title: 'Producto agregado',
+                        text: `"${productoSeleccionado.titulo}" fue agregado al carrito.`,
+                        icon: 'success',
+                        confirmButtonText: 'Aceptar',
+                        confirmButtonColor: '#2563eb'
+                    });
+                }
+            });
+        });
+    });
+}
+
+function agregarAlCarrito(producto) {
+    const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+    carrito.push(producto);
+
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+
+    console.log('Carrito actual:', carrito);
+}
+
 // Cargar productos al iniciar la página
 
 document.addEventListener('DOMContentLoaded', async function() {
@@ -107,7 +155,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 
         console.log(misProductos);
         renderizarProductos(misProductos);
-
+        activarBotonesAgregar(misProductos);
     } catch (error) {
         console.error('Error al cargar productos:', error);
     }
