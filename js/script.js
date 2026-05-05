@@ -182,7 +182,16 @@ function verDetalleProducto(productoId) {
         console.log(misProductos);
         renderizarProductos(misProductos);
         activarBotonesAgregar(misProductos);
-    } catch (error) {
-        console.error('Error al cargar productos:', error);
+
+        
+// Cerrar el modal de detalle del producto
+document.getElementById('close-detail-modal').addEventListener('click', () => {
+    document.getElementById('product-detail-modal').style.display = 'none';
+});
+// Cerrar el modal de detalle al hacer clic fuera del contenido
+window.addEventListener('click', (event) => {
+    const detailModal = document.getElementById('product-detail-modal');
+    if (event.target === detailModal) {
+        detailModal.style.display = 'none';
     }
 });
