@@ -11,23 +11,23 @@ const closeButton = document.getElementById('close-button');
 const abrirModal = document.querySelectorAll('.abrir-modal');
 const formModal = document.getElementById('form-modal');
 
-menuHamburguesa.addEventListener('click', function() {
+menuHamburguesa.addEventListener('click', function () {
     mobileMenu.classList.toggle('active');
 });
 
-abrirModal.forEach(function(button) {
-    button.addEventListener('click', function(event) {
+abrirModal.forEach(function (button) {
+    button.addEventListener('click', function (event) {
         event.preventDefault();
         formModal.style.display = 'block';
     });
 });
 
 
-closeButton.addEventListener('click', function() {
+closeButton.addEventListener('click', function () {
     formModal.style.display = 'none';
 });
 
-window.addEventListener('click', function(event) {
+window.addEventListener('click', function (event) {
     if (event.target === formModal) {
         formModal.style.display = 'none';
     }
@@ -57,7 +57,7 @@ let productosCargados = [];
 
 // Cargar productos al iniciar la página
 
-document.addEventListener('DOMContentLoaded', async function() {
+document.addEventListener('DOMContentLoaded', async function () {
     try {
         const registros = await obtenerTodosLosProductos();
         productosCargados = registros.map(record => {
@@ -119,10 +119,10 @@ function renderizarProductos(productos) {
 function activarBotonesAgregar(productos) {
     const botonesAgregar = document.querySelectorAll('.add-to-cart-btn');
 
-    botonesAgregar.forEach(function(boton) {
-        boton.addEventListener('click', function() {
+    botonesAgregar.forEach(function (boton) {
+        boton.addEventListener('click', function () {
             const productoId = boton.dataset.id;
-            const productoSeleccionado = productos.find(function(producto) {
+            const productoSeleccionado = productos.find(function (producto) {
                 return producto.id === productoId;
             });
 
@@ -135,7 +135,7 @@ function activarBotonesAgregar(productos) {
                 cancelButtonText: 'Cancelar',
                 confirmButtonColor: '#2563eb',
                 cancelButtonColor: '#6b7280'
-            }).then(function(result) {
+            }).then(function (result) {
                 if (result.isConfirmed) {
                     agregarAlCarrito(productoSeleccionado);
 
@@ -178,12 +178,6 @@ function verDetalleProducto(productoId) {
 
     document.getElementById('product-detail-modal').style.display = 'flex';
 }
-
-        console.log(misProductos);
-        renderizarProductos(misProductos);
-        activarBotonesAgregar(misProductos);
-
-        
 // Cerrar el modal de detalle del producto
 document.getElementById('close-detail-modal').addEventListener('click', () => {
     document.getElementById('product-detail-modal').style.display = 'none';
