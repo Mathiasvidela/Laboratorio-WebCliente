@@ -62,9 +62,12 @@
     <!------------------------------------------------------ menu de productos y formulario de envío -->
 
         <div class="menuProductos shadow-sm">
-            <div class="header">
-                <p>Finalizar compra</p>
-                <h5>Revisá tus productos y completá el envío</h5>
+            <div class="headerItems">
+                <div class="checkout-icon"> <i class="fa-solid fa-clipboard-check"> </i></div>
+                <div class="header">
+                    <p>Finalizar compra</p>
+                    <h5>Revisá tus productos y completá el envío</h5>
+                </div>
             </div>
 
             <div id="contenedorProductos">
@@ -123,7 +126,11 @@
 
             <!-- formulario de envío -->
             <div class="formEnvio">
-                <h3>Datos de envío</h3>
+                <div class="headerEnvio">
+                    <div class="checkout-icon"><i class="fa-solid fa-location-dot"></i></div>
+                    <h3>Datos de envío</h3>
+                </div>
+                    
 
                 <form class="row g-3">
                     <div class="col-md-6">
@@ -240,6 +247,7 @@
                     <button type="button" class="btn btn-primary" id="btn-comprar">Finalizar pedido</button>
                     <button type="button" class="btn btn-danger" id="btn-vaciar"><i class="fa-solid fa-delete-left"></i> Vaciar carrito</button>
                 </div>
+                <div class="compra-segura"><i class="fa-solid fa-shield-halved"></i><span>Compra 100% segura y protegida</span></div>
 
             </div>
         </div>
