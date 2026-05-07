@@ -55,6 +55,8 @@ async function obtenerTodosLosProductos() {
 // Variable para guardar los productos obtenidos de Airtable
 let productosCargados = [];
 
+const CANTIDAD_PRODUCTOS_INICIO = 4;
+
 // Cargar productos al iniciar la página
 
 document.addEventListener('DOMContentLoaded', async function () {
@@ -72,7 +74,8 @@ document.addEventListener('DOMContentLoaded', async function () {
                 categoria: fields.categoria || "Sin categoría"
             };
         });
-        renderizarProductos(productosCargados);
+        renderizarProductos(productosCargados.slice(0, CANTIDAD_PRODUCTOS_INICIO));
+        activarBotonesAgregar(productosCargados);
 
     } catch (error) {
         console.error('Error al cargar productos:', error);
@@ -112,6 +115,22 @@ function renderizarProductos(productos) {
             </div>
         </article>
     `).join('');
+}
+
+// Botón "Ver todos los productos"
+
+const botonVerTodos = document.querySelector('.all-button');
+const tituloProductos = document.querySelector('.section-title');
+
+if (botonVerTodos) {
+    botonVerTodos.addEventListener('click', function () {
+        renderizarProductos(productosCargados);
+        activarBotonesAgregar(productosCargados);
+
+        tituloProductos.textContent = 'Todos los productos';
+
+        botonVerTodos.style.display = 'none';
+    });
 }
 
 // Función para activar los botones de "Agregar al carrito"
