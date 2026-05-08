@@ -48,7 +48,7 @@ function mostrarCarrito() {
         const productoHTML = `<article class="cardCompras cardProducto" data-id="${producto.id}">
 
                 <div class="cardComprasTitulo">
-                    <img class="cardImg" src="${producto.image}" alt="">
+                    <img class="cardImg" src="${producto.imagen}" alt="">
                     <h4 class="cardTitulo">${producto.title}</h4>
                 </div>
 
