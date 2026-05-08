@@ -73,6 +73,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             };
         });
         renderizarProductos(productosCargados);
+        activarBotonesAgregar(productosCargados);
 
     } catch (error) {
         console.error('Error al cargar productos:', error);
@@ -120,56 +121,70 @@ function activarBotonesAgregar(productos) {
     const botonesAgregar = document.querySelectorAll('.add-to-cart-btn');
 
     botonesAgregar.forEach(function (boton) {
-        boton.addEventListener('click', function () {
+        boton.addEventListener('click', function (event) {
+            event.stopPropagation();
             const productoId = boton.dataset.id;
-            const productoSeleccionado = productos.find(function (producto) {
-                return producto.id === productoId;
-            });
+            const productoSeleccionado = productos.find(p => p.id === productoId);
 
-            Swal.fire({
-                title: '¿Agregar al carrito?',
-                text: `¿Quieres agregar "${productoSeleccionado.titulo}" al carrito?`,
-                icon: 'question',
-                showCancelButton: true,
-                confirmButtonText: 'Sí, agregar',
-                cancelButtonText: 'Cancelar',
-                confirmButtonColor: '#2563eb',
-                cancelButtonColor: '#6b7280'
-            }).then(function (result) {
-                if (result.isConfirmed) {
-                    agregarAlCarrito(productoSeleccionado);
+                agregarAlCarrito(productoSeleccionado);
 
-                    Swal.fire({
-                        title: 'Producto agregado',
-                        text: `"${productoSeleccionado.titulo}" fue agregado al carrito.`,
-                        icon: 'success',
-                        confirmButtonText: 'Aceptar',
-                        confirmButtonColor: '#2563eb'
-                    });
-                }
+                Swal.fire({
+                    title: 'Producto agregado',
+                    text: `"${productoSeleccionado.titulo}" fue agregado al carrito.`,
+                    icon: 'success',
+                    timer: 2000,
+                    showConfirmButton: false,
+                });
             });
         });
-    });
 }
+document.getElementById('btn-add-from-modal').addEventListener('click', () => {
+    if (productoActualEnModal) {
+        agregarAlCarrito(productoActualEnModal);
+        
+        Swal.fire({
+            title: '¡Añadido!',
+            text: 'El producto fue agregado al carrito',
+            icon: 'success',
+            timer: 2000,
+            showConfirmButton: false,
+            zIndex: 10000
+        
+        });
+    }
+});
 
 function agregarAlCarrito(producto) {
-    const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
-    carrito.push(producto);
+    // Buscamos si ya existe para sumar cantidad
+    const existe = carrito.find(item => item.id === producto.id);
+
+    if (existe) {
+        existe.cantidad += 1;
+    } else {
+        // Mapeamos los nombres de Airtable a los que espera el Checkout
+        carrito.push({
+            id: producto.id,
+            title: producto.titulo,
+            price: parseFloat(producto.precio),
+            image: producto.imagen,
+            cantidad: 1
+        });
+    }
 
     localStorage.setItem('carrito', JSON.stringify(carrito));
-
-    console.log('Carrito actual:', carrito);
 }
 
 // Cargar productos al iniciar la página
-
+let productoActualEnModal = null;
 function verDetalleProducto(productoId) {
     const producto = productosCargados.find(p => p.id === productoId);
     if (!producto) {
         console.error('Producto no encontrado:', productoId);
         return;
     }
+    productoActualEnModal = producto;
     document.getElementById('modal-img').src = producto.imagen;
     document.getElementById('modal-title').innerText = producto.titulo;
     document.getElementById('modal-category').innerText = producto.categoria;
@@ -189,3 +204,11 @@ window.addEventListener('click', (event) => {
         detailModal.style.display = 'none';
     }
 });
+
+const btnVerCarrito = document.querySelector('.btn-view-cart');
+
+if (btnVerCarrito) {
+    btnVerCarrito.addEventListener('click', () => {
+        window.location.href = './pages/checkout.html';
+    });
+}
