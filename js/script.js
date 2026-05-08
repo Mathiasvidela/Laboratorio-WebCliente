@@ -356,3 +356,8 @@ document.addEventListener('click', function (event) {
     }
 });
 
+// Boton ver productos en home
+document.getElementById('explorar-productos').addEventListener('click', function() {
+    document.getElementById('section-verproductos').scrollIntoView({ behavior: 'smooth' });
+});
+
