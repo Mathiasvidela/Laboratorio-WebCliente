@@ -485,3 +485,59 @@
 .all-button:hover {
     background-color: #1d4ed8;
 }
+
+// Estilos para la barra de búsqueda y sugerencias
+
+.search-box {
+    position: relative;
+}
+
+.search-suggestions {
+    display: none;
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    margin: 0;
+    padding: 8px 0;
+    list-style: none;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+    overflow: hidden;
+}
+
+.search-suggestions li {
+    padding: 10px 14px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #202f4f;
+}
+
+.search-suggestions li:hover {
+    background: #f3f4f6;
+}
+
+.no-results {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 40px 20px;
+    color: #374151;
+}
+
+.no-results .material-symbols-outlined {
+    font-size: 48px;
+    color: #9ca3af;
+}
+
+.no-results h3 {
+    margin-top: 10px;
+    font-size: 24px;
+}
+
+.no-results p {
+    margin-top: 6px;
+    color: #6b7280;
+}

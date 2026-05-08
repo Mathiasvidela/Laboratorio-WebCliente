@@ -116,6 +116,8 @@ contenedorProductos.addEventListener('click', (e) => {
         guardarItem(carrito);
         mostrarCarrito();
         calcularTotales();
+        mostrarToast('Producto agregado al carrito', 'success');
+        
     }
 
 
@@ -136,6 +138,7 @@ contenedorProductos.addEventListener('click', (e) => {
         guardarItem(carrito);
         mostrarCarrito();
         calcularTotales();
+        mostrarToast('Producto eliminado del carrito', 'info');
     }
 
 });
@@ -238,6 +241,25 @@ btnVaciar.addEventListener('click', () => {
 
 //VACIAR EL CARRITO
 
+});
+
+//toast persinalizadas para sweet alert
+function mostrarToast(mensaje, icono) {
+    Toast.fire({
+        icon: icono,
+        title: mensaje
+    });
+}
+const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 2000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
 });
 
 //iniciar la pagina con los productos del carrito y los totales calculados

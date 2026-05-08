@@ -1,3 +1,10 @@
+//local storage temporal para probar funciones de calculo de totales y mostrar productos dinamicos LUEGO BORRAR
+/*localStorage.setItem('carrito', JSON.stringify([
+    { id: 1, title: 'Producto 1', price: 100, cantidad: 10 , image: 'https://placehold.co/600x400'},
+    { id: 2, title: 'Producto 2', price: 50, cantidad: 5 , image: 'https://placehold.co/600x400'},
+    { id: 3, title: 'Producto 3', price: 150, cantidad: 1 , image: 'https://placehold.co/600x400'}
+]));*/
+
 
 //retorna  los datos del carrito
 export function obtenerCarrito() {

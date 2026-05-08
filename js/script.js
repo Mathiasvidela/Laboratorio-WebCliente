@@ -55,6 +55,8 @@ async function obtenerTodosLosProductos() {
 // Variable para guardar los productos obtenidos de Airtable
 let productosCargados = [];
 
+const CANTIDAD_PRODUCTOS_INICIO = 4;
+
 // Cargar productos al iniciar la página
 
 document.addEventListener('DOMContentLoaded', async function () {
@@ -72,7 +74,11 @@ document.addEventListener('DOMContentLoaded', async function () {
                 categoria: fields.categoria || "Sin categoría"
             };
         });
+<<<<<<< HEAD
         renderizarProductos(productosCargados);
+=======
+        renderizarProductos(productosCargados.slice(0, CANTIDAD_PRODUCTOS_INICIO));
+>>>>>>> main
         activarBotonesAgregar(productosCargados);
 
     } catch (error) {
@@ -113,6 +119,22 @@ function renderizarProductos(productos) {
             </div>
         </article>
     `).join('');
+}
+
+// Botón "Ver todos los productos"
+
+const botonVerTodos = document.querySelector('.all-button');
+const tituloProductos = document.querySelector('.section-title');
+
+if (botonVerTodos) {
+    botonVerTodos.addEventListener('click', function () {
+        renderizarProductos(productosCargados);
+        activarBotonesAgregar(productosCargados);
+
+        tituloProductos.textContent = 'Todos los productos';
+
+        botonVerTodos.style.display = 'none';
+    });
 }
 
 // Función para activar los botones de "Agregar al carrito"
@@ -205,6 +227,7 @@ window.addEventListener('click', (event) => {
     }
 });
 
+<<<<<<< HEAD
 const btnVerCarrito = document.querySelector('.btn-view-cart');
 
 if (btnVerCarrito) {
@@ -212,3 +235,124 @@ if (btnVerCarrito) {
         window.location.href = './pages/checkout.html';
     });
 }
+=======
+// ---------------- BUSCADOR ----------------
+
+// ---------------- BUSCADOR ----------------
+
+const searchBoxes = document.querySelectorAll('.search-box');
+const searchInputs = document.querySelectorAll('.search-box input');
+
+searchBoxes.forEach(function (box) {
+    if (!box.querySelector('.search-suggestions')) {
+        const sugerencias = document.createElement('ul');
+        sugerencias.className = 'search-suggestions';
+        box.appendChild(sugerencias);
+    }
+});
+
+searchInputs.forEach(function (input) {
+    input.addEventListener('input', function (event) {
+        const texto = event.target.value.toLowerCase().trim();
+
+        searchInputs.forEach(function (otroInput) {
+            if (otroInput !== input) {
+                otroInput.value = event.target.value;
+            }
+        });
+
+        aplicarBusqueda(texto);
+    });
+});
+
+function aplicarBusqueda(texto) {
+    ocultarTodasLasSugerencias();
+
+    if (texto === '') {
+        renderizarProductos(productosCargados.slice(0, CANTIDAD_PRODUCTOS_INICIO));
+        activarBotonesAgregar(productosCargados);
+
+        tituloProductos.textContent = 'Productos Destacados';
+
+        if (botonVerTodos) {
+            botonVerTodos.style.display = 'block';
+        }
+
+        return;
+    }
+
+    const productosFiltrados = productosCargados.filter(function (producto) {
+        return producto.titulo.toLowerCase().includes(texto) ||
+            producto.descripcion.toLowerCase().includes(texto) ||
+            producto.categoria.toLowerCase().includes(texto) ||
+            String(producto.precio).toLowerCase().includes(texto);
+    });
+
+    renderizarProductos(productosFiltrados);
+    activarBotonesAgregar(productosCargados);
+
+    tituloProductos.textContent = `Resultados para "${texto}"`;
+
+    if (botonVerTodos) {
+        botonVerTodos.style.display = 'none';
+    }
+
+    if (productosFiltrados.length === 0) {
+        mostrarMensajeSinResultados(texto);
+    } else {
+        mostrarSugerencias(productosFiltrados);
+    }
+}
+
+function mostrarMensajeSinResultados(texto) {
+    const container = document.querySelector('.product-container');
+
+    container.innerHTML = `
+        <div class="no-results">
+            <span class="material-symbols-outlined">search_off</span>
+            <h3>No se encontraron productos</h3>
+            <p>No hay resultados para "${texto}".</p>
+        </div>
+    `;
+}
+
+function mostrarSugerencias(productosFiltrados) {
+    const primerasCoincidencias = productosFiltrados.slice(0, 5);
+
+    searchBoxes.forEach(function (box) {
+        const sugerencias = box.querySelector('.search-suggestions');
+        sugerencias.innerHTML = '';
+
+        primerasCoincidencias.forEach(function (producto) {
+            const item = document.createElement('li');
+            item.textContent = producto.titulo;
+
+            item.addEventListener('click', function () {
+                searchInputs.forEach(function (input) {
+                    input.value = producto.titulo;
+                });
+
+                aplicarBusqueda(producto.titulo.toLowerCase());
+                verDetalleProducto(producto.id);
+                ocultarTodasLasSugerencias();
+            });
+
+            sugerencias.appendChild(item);
+        });
+
+        sugerencias.style.display = primerasCoincidencias.length > 0 ? 'block' : 'none';
+    });
+}
+
+function ocultarTodasLasSugerencias() {
+    document.querySelectorAll('.search-suggestions').forEach(function (sugerencias) {
+        sugerencias.style.display = 'none';
+    });
+}
+
+document.addEventListener('click', function (event) {
+    if (!event.target.closest('.search-box')) {
+        ocultarTodasLasSugerencias();
+    }
+});
+>>>>>>> main
