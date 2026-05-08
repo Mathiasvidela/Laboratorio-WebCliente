@@ -1,6 +1,8 @@
 //imporacion de funciones JS carrito
 import { obtenerCarrito } from './carrito.js';
 import { eliminarItem } from './carrito.js';
+import { vaciarCarrito } from './carrito.js';
+import { guardarItem } from './carrito.js';
 
 const cardProducto = document.querySelectorAll('.cardProducto');
 const cantidadValor = document.querySelectorAll('.cantidadValor');
@@ -9,7 +11,7 @@ const ivaValor = document.getElementById('iva');
 const totalValor = document.getElementById('total');
 const contenedorProductos = document.getElementById('contenedorProductos');
 const btnComprar = document.getElementById('btn-comprar');
-const btnVolver = document.getElementById('btn-volver');
+const btnVaciar = document.getElementById('btn-vaciar');
 const summaryItems = document.getElementById('summaryItems');
 
 
@@ -111,7 +113,7 @@ contenedorProductos.addEventListener('click', (e) => {
             }
         });
 
-        localStorage.setItem('carrito', JSON.stringify(carrito));
+        guardarItem(carrito);
         mostrarCarrito();
         calcularTotales();
         mostrarToast('Producto agregado al carrito', 'success');
@@ -133,7 +135,7 @@ contenedorProductos.addEventListener('click', (e) => {
             }
         });
 
-        localStorage.setItem('carrito', JSON.stringify(carrito));
+        guardarItem(carrito);
         mostrarCarrito();
         calcularTotales();
         mostrarToast('Producto eliminado del carrito', 'info');
@@ -193,8 +195,52 @@ btnComprar.addEventListener('click', () => {
 
 });
 
-btnVolver.addEventListener('click', () => {
-    window.location.href = '../index.html';
+
+btnVaciar.addEventListener('click', () => {
+
+    if (obtenerCarrito().length === 0) {
+        
+         Swal.fire({
+        theme: 'bootstrap-5',
+        title: 'Carrito vacío',
+        text: 'Tu carrito ya está vacío.',
+        icon: 'info',
+        confirmButtonText: 'Aceptar',
+        confirmButtonColor: '#6B7280'
+        })
+        return;
+
+    } else{
+
+        Swal.fire({
+        title: 'Atención',
+        text: "Esta seguro que desea vaciar su carrito?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#dc2626',
+        cancelButtonColor: '#6B7280',
+        confirmButtonText: 'Sí, vaciar carrito',
+        cancelButtonText: 'Cancelar'
+        }).then((result) => {
+        if (result.isConfirmed) {
+            vaciarCarrito();
+            mostrarCarrito();
+            calcularTotales();
+
+            Swal.fire({
+                title: 'Carrito vaciado',
+                text: 'Tu carrito ha sido vaciado exitosamente.',
+                icon: 'success',
+                confirmButtonText: 'Aceptar',
+                confirmButtonColor: '#96DF7B'
+            });
+        }
+    });
+}
+
+
+//VACIAR EL CARRITO
+
 });
 
 //toast persinalizadas para sweet alert

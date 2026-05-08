@@ -1,0 +1,203 @@
+/* Variables de color basadas en la imagen */
+:root {
+    --primary-blue: #1a61ff;
+    --bg-light-blue: #eef2ff;
+    --text-dark: #111827;
+    --text-gray: #4b5563;
+    --border-color: #e5e7eb;
+    --white: #ffffff;
+}
+
+/* Overlay: Fondo oscuro semi-transparente */
+.product-modal-overlay {
+    display: none; /* Se controla con JS */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Contenedor del Modal */
+.product-modal-container {
+    background-color: var(--white);
+    width: 100%;
+    max-width: 1050px;
+    border-radius: 16px;
+    padding: 40px;
+    position: relative;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Botón Volver */
+.modal-back-btn {
+    position: absolute;
+    top: 25px;
+    left: 25px;
+    background: none;
+    border: none;
+    color: var(--text-gray);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.modal-back-btn:hover {
+    color: var(--text-dark);
+}
+
+/* Layout de dos columnas */
+.product-detail-content {
+    display: flex;
+    gap: 48px;
+    margin-top: 40px;
+    align-items: flex-start;
+}
+
+/* Columna Imagen */
+.product-detail-image {
+    flex: 1;
+}
+
+.product-detail-image img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+/* Columna Información */
+.product-detail-info {
+    flex: 1.2;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-category {
+    background-color: var(--bg-light-blue);
+    color: var(--primary-blue);
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    width: fit-content;
+    text-transform: capitalize;
+}
+
+#modal-title {
+    font-size: 38px;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin: 16px 0;
+}
+
+.modal-description {
+    color: var(--text-gray);
+    font-size: 17px;
+    line-height: 1.6;
+    margin-bottom: 24px;
+}
+
+/* Lista de Beneficios */
+.modal-features {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 32px;
+}
+
+.modal-features li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #059669; /* Verde de la imagen */
+    font-size: 15px;
+    margin-bottom: 12px;
+    font-weight: 500;
+}
+
+.modal-features .material-symbols-outlined {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* Sección de Precio */
+.modal-price-container span {
+    display: block;
+    color: var(--text-gray);
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+#modal-price {
+    font-size: 42px;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin: 0 0 32px 0;
+}
+
+/* Botones de Acción */
+.modal-actions {
+    display: flex;
+    gap: 16px;
+}
+
+.btn-add-cart {
+    flex: 2;
+    background-color: var(--primary-blue);
+    color: white;
+    border: none;
+    padding: 16px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn-add-cart:hover {
+    background-color: #134ed1;
+}
+
+.btn-view-cart {
+    flex: 1;
+    background-color: #f3f4f6;
+    color: var(--text-dark);
+    border: none;
+    padding: 16px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn-view-cart:hover {
+    background-color: #e5e7eb;
+}
+
+/* Responsive para móviles */
+@media (max-width: 850px) {
+    .product-detail-content {
+        flex-direction: column;
+    }
+    .product-modal-container {
+        padding: 30px 20px;
+        overflow-y: auto;
+        max-height: 90vh;
+    }
+    #modal-title {
+        font-size: 28px;
+    }
+}
