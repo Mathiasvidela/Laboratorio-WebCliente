@@ -74,11 +74,11 @@ document.addEventListener('DOMContentLoaded', async function () {
                 categoria: fields.categoria || "Sin categoría"
             };
         });
-<<<<<<< HEAD
+
         renderizarProductos(productosCargados);
-=======
+
         renderizarProductos(productosCargados.slice(0, CANTIDAD_PRODUCTOS_INICIO));
->>>>>>> main
+
         activarBotonesAgregar(productosCargados);
 
     } catch (error) {
@@ -227,7 +227,7 @@ window.addEventListener('click', (event) => {
     }
 });
 
-<<<<<<< HEAD
+
 const btnVerCarrito = document.querySelector('.btn-view-cart');
 
 if (btnVerCarrito) {
@@ -235,7 +235,7 @@ if (btnVerCarrito) {
         window.location.href = './pages/checkout.html';
     });
 }
-=======
+
 // ---------------- BUSCADOR ----------------
 
 // ---------------- BUSCADOR ----------------
@@ -355,4 +355,4 @@ document.addEventListener('click', function (event) {
         ocultarTodasLasSugerencias();
     }
 });
->>>>>>> main
+
